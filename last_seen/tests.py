@@ -1,5 +1,5 @@
 import datetime
-import mock
+from unittest import mock
 import time
 from django.test import TestCase
 from django.contrib.auth.models import User
@@ -18,8 +18,8 @@ class TestLastSeenModel(TestCase):
         user = User(username='testuser')
         ts = datetime.datetime(2013, 1, 1, 2, 3, 4)
         seen = LastSeen(user=user, last_seen=ts)
-        self.assertIn('testuser', unicode(seen))
-        self.assertIn('2013-01-01 02:03:04', unicode(seen))
+        self.assertIn('testuser', str(seen))
+        self.assertIn('2013-01-01 02:03:04', str(seen))
 
 
 class TestLastSeenManager(TestCase):
@@ -188,8 +188,9 @@ class TestUserSeen(TestCase):
 class TestClearInterval(TestCase):
 
     @mock.patch('last_seen.models.LastSeen.objects.filter', autospec=True)
-    @mock.patch('last_seen.models.cache', autospec=True)
-    def test_clear_interval(self, cache, filter):
+    def test_clear_interval(self, filter):
+        patcher_cache = mock.patch('last_seen.models.cache')
+        mock_cache = patcher_cache.start()
         site = Site.objects.get_current()
         user = User(username='testuser', pk=1)
         ls1 = LastSeen(user=user, module="mod1", site=site)
@@ -200,18 +201,21 @@ class TestClearInterval(TestCase):
 
         filter.assert_called_with(user=user)
         expected = {'last_seen:1:mod1:1': -1, 'last_seen:1:mod2:1': -1}
-        cache.set_many.assert_called_with(expected)
+        mock_cache.set_many.assert_called_with(expected)
+        patcher_cache.stop()
 
     @mock.patch('last_seen.models.LastSeen.objects.filter', autospec=True)
-    @mock.patch('last_seen.models.cache', autospec=True)
-    def test_clear_interval_none(self, cache, filter):
+    def test_clear_interval_none(self, filter):
+        patcher_cache = mock.patch('last_seen.models.cache')
+        mock_cache = patcher_cache.start()
         user = User(username='testuser', pk=1)
         filter.return_value = []
 
         clear_interval(user)
 
         filter.assert_called_with(user=user)
-        self.assertFalse(cache.delete_many.called)
+        self.assertFalse(mock_cache.delete_many.called)
+        patcher_cache.stop()
 
     def test_clear_interval_works(self):
         user = User.objects.create(username='testuser')

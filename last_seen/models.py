@@ -5,7 +5,7 @@ from django.contrib.sites.models import Site
 from django.utils import timezone
 from django.core.cache import cache
 
-import settings
+from last_seen import settings
 
 
 class LastSeenManager(models.Manager):
@@ -67,8 +67,8 @@ class LastSeen(models.Model):
         unique_together = (('user', 'site', 'module'),)
         ordering = ('-last_seen',)
 
-    def __unicode__(self):
-        return u"%s on %s" % (self.user, self.last_seen)
+    def __str__(self):
+        return "%s on %s" % (self.user, self.last_seen)
 
 
 def get_cache_key(site, module, user):

@@ -2,6 +2,7 @@
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+SECRET_KEY = '#%p%i@fqj*&^$o$d8m!n9d*qd8h%vyq=8p$r)czf4a3rfrdf-l'
 
 DATABASES = {
     'default': {
@@ -25,11 +26,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
-    'south',
     'last_seen',
 )
 

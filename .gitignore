@@ -1,0 +1,7 @@
+*.py[cod]
+*.orig
+htmlcov/
+.coverage
+dev.db
+dist
+MAINFEST

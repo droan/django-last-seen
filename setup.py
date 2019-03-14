@@ -1,10 +1,11 @@
 #!/usr/bin/env python
+# coding: utf-8
 import os
 from distutils.core import setup
 
-__author__ = u'Ferran Pegueroles'
-__copyright__ = u'Copyright 2013, Ferran Pegueroles'
-__credits__ = [u'Ferran Pegueroles']
+__author__ = 'Ferran Pegueroles'
+__copyright__ = 'Copyright 2013, Ferran Pegueroles'
+__credits__ = ['Ferran Pegueroles']
 
 
 __license__ = 'GPL'
