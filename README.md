@@ -1,6 +1,5 @@
 ![Django CI](https://github.com/VuMedi/django-last-seen/workflows/Django%20CI/badge.svg)
 
-================
 django-last-seen
 ================
 
@@ -12,7 +11,7 @@ The app is ready for python 3.7 and django 2.2, it uses the AUTH_USER_MODEL sett
 the user model,
 
 Installation
-============
+------------
 
 #. Install with ``pip install django-last-seen"`` or add ``"last_seen"``
    directory to your Python path.
@@ -23,7 +22,7 @@ Installation
 #. Run ``manage.py migrate`` to create the new tables
 
 Usage
-=====
+-----
 
 To get when a user has been last seen::
 
@@ -40,7 +39,7 @@ To save a last seen user without the middleware::
     LastSeen.object.when(user=user, module='forum')
 
 Middleware
-==========
+----------
 
 The provided middleware keeps track of when an authenticated user has been
 last seen on the site,
@@ -64,7 +63,7 @@ Then to get the data::
     seen = LastSeen.object.when(user=user, module='forum')
 
 Settings
-========
+--------
 
 LAST_SEEN_DEFAULT_MODULE
     The default module used on the middleware. The default value is ``default``.
