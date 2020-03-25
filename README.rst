@@ -1,9 +1,12 @@
+![Django CI](https://github.com/VuMedi/django-last-seen/workflows/Django%20CI/badge.svg)
+
 ================
 django-last-seen
 ================
 
-Keep trak of when a user has been last seen on a website.
-The last seen time is kept on the database
+
+Keep track of when a user has been last seen on a website.
+The last seen time is kept on the database.
 
 The app is ready for python 3.7 and django 2.2, it uses the AUTH_USER_MODEL setting to get
 the user model,
