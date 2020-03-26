@@ -1,7 +1,9 @@
 from last_seen.models import user_seen
 
+from django.utils.deprecation import MiddlewareMixin
 
-class LastSeenMiddleware(object):
+
+class LastSeenMiddleware(MiddlewareMixin):
     """
         Middleware to set timestampe when a user
         has been last seen
