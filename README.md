@@ -6,15 +6,15 @@ Keep track of when a user has been last seen on a website.
 The last seen time is kept on the database.
 
 The app is ready for python 3.6, 3.7, 3.8 and django 2.2, it uses the AUTH_USER_MODEL setting to get
-the user model,
+the user model.
 
 ## Installation
 
-Install with ``pip install django-last-seen"`` or add ``"last_seen"`` directory to your Python path.
+Install with ``pip install django-last-seen"`` or add ``'last_seen'`` directory to your Python path.
 
-Add ``"last_seen"`` to the ``INSTALLED_APPS`` tuple found in your settings file.
+Add ``'last_seen'`` to the ``INSTALLED_APPS`` tuple found in your settings file.
 
-Add 'last_seen.middleware.LastSeenMiddleware' to MIDDLEWARE_CLASSES tuple found in your settings file.
+Add ``'last_seen.middleware.LastSeenMiddleware'`` to MIDDLEWARE_CLASSES tuple found in your settings file.
 
 Run ``manage.py migrate`` to create the new tables
 
